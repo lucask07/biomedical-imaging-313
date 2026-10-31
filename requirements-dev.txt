@@ -1,4 +1,5 @@
 -r requirements.txt
 nbformat>=5.10,<6
-nbclient>=0.10,<1
-ipykernel>=6.29,<8
+nbclient>=0.10,<0.11
+ipykernel>=6.29,<7
+jupyter-client>=8.6,<8.7

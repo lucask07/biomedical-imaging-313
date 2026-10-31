@@ -35,6 +35,7 @@ for name, params in PRESETS.items():
     set_preset(name)
     assert all(controls[k].value == v for k, v in params.items())
     assert "NYQUIST" in metrics_box.value
+    assert bytes(plot_image.value).startswith(b"\x89PNG\r\n\x1a\n")
     fig = make_dashboard(**params)
     fig.savefig(build / (name.lower().replace(" ", "_") + ".png"), dpi=130)
     plt.close(fig)
