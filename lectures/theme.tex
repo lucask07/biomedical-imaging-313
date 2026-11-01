@@ -1,0 +1,40 @@
+% Shared Beamer layout for editable Markdown lectures.
+\geometry{paperwidth=338.667mm,paperheight=190.5mm}
+\usefonttheme{professionalfonts}
+\usepackage{fontspec}
+\setsansfont{texgyreheros-regular.otf}[Scale=1,BoldFont=texgyreheros-bold.otf,ItalicFont=texgyreheros-italic.otf,BoldItalicFont=texgyreheros-bolditalic.otf]
+\setmainfont{texgyreheros-regular.otf}[Scale=1,BoldFont=texgyreheros-bold.otf,ItalicFont=texgyreheros-italic.otf,BoldItalicFont=texgyreheros-bolditalic.otf]
+\definecolor{CourseBlue}{HTML}{173F58}
+\definecolor{CourseTeal}{HTML}{157A80}
+\definecolor{CourseGray}{HTML}{536473}
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{frametitle}{fg=CourseBlue,bg=white}
+\setbeamercolor{title}{fg=CourseBlue}
+\setbeamercolor{structure}{fg=CourseTeal}
+\setbeamercolor{itemize item}{fg=CourseTeal}
+\setbeamerfont{title}{size=\fontsize{42}{48}\selectfont,series=\bfseries}
+\setbeamerfont{subtitle}{size=\fontsize{24}{29}\selectfont}
+\setbeamerfont{frametitle}{size=\fontsize{32}{38}\selectfont,series=\bfseries}
+\makeatletter
+\renewcommand\normalsize{\@setfontsize\normalsize{24}{31}}
+\makeatother
+\setbeamerfont{normal text}{size=\normalsize}
+\setbeamersize{text margin left=18mm,text margin right=18mm}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{footline}{
+  \leavevmode
+  \hbox{\hspace*{18mm}\color{CourseGray}\fontsize{14}{17}\selectfont
+    \makebox[\dimexpr\paperwidth-36mm\relax]{\rlap{Medical Imaging}\hfill UST ECE, ENGR 313\hfill\llap{\insertframenumber}}}
+  \vskip4mm
+}
+\setbeamertemplate{title page}{
+  \vspace{20mm}
+  {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}
+}
+\setlength{\parskip}{0.55em}
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.10}
+\hypersetup{colorlinks=true,urlcolor=CourseTeal,linkcolor=CourseBlue}
+\setbeamertemplate{note page}[plain]

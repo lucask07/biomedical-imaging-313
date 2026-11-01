@@ -1,4 +1,4 @@
-# Biomedical Imaging Interactive Notebooks
+# Medical Imaging Interactive Notebooks
 
 Interactive undergraduate labs about the physics and engineering of image formation. Students adjust controls, interpret images and measurements, and answer questions without writing Python.
 
@@ -20,7 +20,7 @@ No repository owner or GitHub URL was supplied, so this README does not contain 
 | 03 · CT reconstruction | Planned | X-ray projections and reconstruction |
 | 04 · MRI k-space | Planned | Fourier encoding and spatial frequency |
 
-Lab 01 takes about 30–45 minutes. It includes an adjustable sinusoidal resolution target, Gaussian blur, detector pixel pitch, target phase, fixed-scale image comparisons, profiles, a PSF cross-section and MTF curves. Presets isolate fine sampling, blur, aliasing, and the Nyquist boundary. Five student questions include a measurement table.
+Lab 01 takes about 30–45 minutes. It includes an adjustable sinusoidal resolution target, Gaussian blur, detector pixel spacing (pitch), target phase, fixed-scale image comparisons, profiles, a PSF cross-section and MTF curves. Presets isolate fine sampling, blur, aliasing, and the Nyquist boundary. Four required investigations include a measurement table; a fifth, optional investigation examines phase at Nyquist. Students are expected to have covered sinusoids, convolution, Fourier transforms and sampling in lecture. Imaging terms such as PSF, FWHM and MTF are defined as they are introduced.
 
 ## Scientific model
 
@@ -34,12 +34,15 @@ Analytic convolution and integration avoid a hidden fine-grid approximation and 
 
 ```text
 notebooks/01_sampling_resolution.ipynb  Standalone Colab lab
+lectures/                            Markdown slide sources, PDFs, and instructor guide
 data/README.md                        Data provenance policy
 requirements.txt                      Lab dependencies
 requirements-dev.txt                  Local verification dependencies
 tests/test_sampling_resolution.py     Independent numerical model checks
 tools/validate_notebook.py             Fresh-kernel execution and interface checks
 ```
+
+The [lecture drafts](lectures/README.md) cover three 65-minute classes and include a guided notebook block in the system-response deck.
 
 ## Local development and verification
 
@@ -55,7 +58,7 @@ The validator executes every cell in a fresh Python kernel, exercises presets an
 
 ## GitHub and Canvas workflow
 
-Publish this directory as the GitHub repository `biomedical-imaging-labs` (or another chosen name). GitHub holds the authoritative notebooks; Colab copies are working copies. Review notebook changes before merging. Keep committed notebooks free of personal information and bulky execution outputs.
+Publish this directory as the GitHub repository `medical-imaging-labs` (or another chosen name). GitHub holds the authoritative notebooks; Colab copies are working copies. Review notebook changes before merging. Keep committed notebooks free of personal information and bulky execution outputs.
 
 In Canvas, create a module item using **External URL** and paste the direct Colab URL above after substitution. Open in a new tab. Test the link with student-level access; a private repository requires GitHub access for every student. For a stable course offering, replace `main` in the URL with a release tag or commit SHA. Students should save their own copies, record their answers, and submit through your chosen Canvas assignment.
 

@@ -41,6 +41,7 @@ for name, params in PRESETS.items():
     plt.close(fig)
 # Observe callbacks update metrics, rather than only testing rendering functions.
 set_preset("Nyquist boundary")
+assert phase_panel.selected_index == 0
 assert measurements(**{k:w.value for k,w in controls.items()})["sample_range_contrast"] < 1e-12
 controls["phase_deg"].value = 90
 assert measurements(**{k:w.value for k,w in controls.items()})["sample_range_contrast"] > .5
@@ -53,6 +54,7 @@ for params in [dict(f=8, sigma=0, pitch=.5, phase_deg=360),
     fig.canvas.draw()
     plt.close(fig)
 set_preset("Fine sampling")
+assert phase_panel.selected_index is None
 assert not plt.get_fignums()
 print("PASS: all cells, four presets, observer updates, phase degeneracy and control extremes")
 '''

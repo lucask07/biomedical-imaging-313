@@ -10,6 +10,8 @@ from scipy.optimize import brentq
 ROOT = Path(__file__).resolve().parents[1]
 NB = json.loads((ROOT / "notebooks/01_sampling_resolution.ipynb").read_text())
 MODEL = next(c["source"] for c in NB["cells"] if "model" in c["metadata"].get("tags", []))
+if isinstance(MODEL, list):
+    MODEL = "".join(MODEL)
 NS = {"np": np, "brentq": brentq}
 exec(MODEL, NS)
 

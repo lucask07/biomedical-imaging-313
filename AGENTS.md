@@ -2,7 +2,7 @@
 
 ## Project purpose
 
-Develop and maintain materials for the Fall 2026 Biomedical imaging course. For now we will not interface with Canvas. Eventually we may so there are instructions to work with Canvas. 
+Develop and maintain materials for the Fall 2026 Medical Imaging course. For now we will not interface with Canvas. Eventually we may so there are instructions to work with Canvas. 
 
 ## Course overview
 
