@@ -2,26 +2,13 @@
 
 ## Project purpose
 
-Develop and maintain materials for the Fall 2026 Medical Imaging course. For now we will not interface with Canvas. Eventually we may so there are instructions to work with Canvas. 
-
+Develop and maintain materials for the Fall 2026 Medical Imaging course. 
 ## Course overview
 
 - 2 credit, half semester for students seeking a biomedical minor. 
 - Students have some programming experience but should not assume much.
 - Focus is on the engineering and physics of imaging systems not image processing. 
 - Primary text is "Medical Imaging: Signals and Systems"  by Jerry L. Prince and Jonathan M. Links
-
-## General expectations on Canvas
-
-- Automatically correct clear Canvas date inconsistencies and record every changed date in `change_log.txt`.
-- Remove student-facing links to solutions while preserving the underlying Canvas files.
-- Unpublish obsolete material by default. If deletion would improve cleanup, ask for approval before deleting it.
-- Do not create module lock dates unless explicitly requested.
-- Read-only Canvas inspection passes are authorized as needed.
-- Do not modify, publish, or unpublish the main Canvas home page.
-- Do not modify Discussions, Grades, or People.
-- Never send messages or post discussions.
-- Do not create a separate backup before destructive changes; prior course copies serve as backups.
 
 ## General expectations
 
