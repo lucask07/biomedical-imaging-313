@@ -7,6 +7,9 @@ These draft decks assume 65-minute classes. Each has an editable Markdown source
 | Physical signals and imaging modalities | [Markdown](01_physical_signals_and_modalities.md) | [PDF](01_physical_signals_and_modalities.pdf) |
 | Signal theory for images | [Markdown](02_signal_theory.md) | [PDF](02_signal_theory.pdf) |
 | System response | [Markdown](03_system_response.md) | [PDF](03_system_response.pdf) |
+| X-ray physics | [Markdown](04_xray_physics.md) | [PDF](04_xray_physics.pdf) |
+| X-ray detection | [Markdown](05_xray_detection.md) | [PDF](05_xray_detection.pdf) |
+| X-ray applications and CT | [Markdown](06_xray_applications_and_ct.md) | [PDF](06_xray_applications_and_ct.pdf) |
 
 [Instructor guide](instructor_guide.md) contains timing, discussion responses, and teaching-resource suggestions. Instructor notes also appear in the Markdown inside `::: notes` blocks; the student PDFs omit them. References appear at the end of each deck. Exact textbook sections can be assigned once the edition is specified.
 
@@ -15,6 +18,18 @@ These draft decks assume 65-minute classes. Each has an editable Markdown source
 The modality deck includes the imaging chain, free-space wavelength and photon energy, and introductory Poisson count statistics and SNR. The signal-theory deck adds angular spatial frequency, two-dimensional Fourier conventions, complex magnitude and phase, and rectangle/sinc and Gaussian transform pairs. The system-response deck connects spatial convolution to frequency multiplication, develops separable Gaussian responses and directional resolution, and explains DC normalization of MTF and finite-pixel contrast loss below Nyquist.
 
 The instructor guide retains 65-minute teaching plans, including a 20-minute guided notebook block in system response. Some existing figures act as reference material when more time is needed for calculation or discussion.
+
+## Radiography module
+
+The physics deck begins with chest radiography, mammography, and fluoroscopy before developing the tube spectrum and the attenuation model. The detection deck reserves 20 minutes for the guided insert-visibility activity, with static image and profile comparisons ready to use in class. The CT deck follows one two-insert model through projections, a sinogram, and a visual comparison of backprojection and filtered backprojection. Each Markdown source includes a 65-minute plan in its instructor notes.
+
+The externally sourced images are archived locally with [image credits and licenses](photos/credits.md). To regenerate the synthetic radiography and CT figures, run this from the repository root:
+
+```bash
+python lectures/generate_radiography_figures.py
+```
+
+The generated figures and the archived images are included for offline slide compilation.
 
 ## Edit and rebuild
 
@@ -66,4 +81,4 @@ Requirements: Python packages from the repository's `requirements.txt`, Pandoc, 
 
 `theme.tex` supplies the common 16:9 layout and footer: Medical Imaging on the left, UST ECE, ENGR 313 centered, and slide number on the right. Title pages omit dates and meeting numbers. Keep `date: ""` in the Markdown metadata to prevent automatic date insertion. `generate_figures.py` creates scientific simulation figures in `figures/`; it uses no patient data, network downloads, or randomness. These PDF figures are included for portable rebuilding. Logs, numerical verification, TeX intermediates, and review images belong in ignored `build/lectures/`.
 
-The slides are original drafts informed by the linked teaching resources. No external lecture figures or stock photographs have been copied. The scientific figures are simplified models, not clinical images. No repository license has been selected.
+The slides are original drafts informed by the linked teaching resources. External images used in the radiography module are credited with their individual licenses. The scientific figures are simplified models, not clinical images. No repository license has been selected.

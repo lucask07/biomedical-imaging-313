@@ -13,6 +13,16 @@ The **point-spread function (PSF)** describes the image of an ideal point input.
 Original Gaussian intensity-PSF simulations, peak-normalized for display. The ideal point is not assigned a finite drawn area. Ask students to describe what a wider spot would do to a pair of nearby points. The normalization in the image is for display only; the analytic PSF integrates to one. Define PSF before using the abbreviation repeatedly.
 :::
 
+## Two nearby point inputs
+
+![](figures/03_two_points.pdf){width=93%}
+
+A wider PSF makes the two objects overlap and hard to distinguish.
+
+::: notes
+Original simulation of equal point inputs at x=-0.3 and +0.3 mm, using Gaussian line-spread responses sigma=0.08 and 0.25 mm. Both responses use the same vertical scale and integrated signal. Do not announce a universal criterion for resolving two points. Resolution depends on the task, contrast, and measurement conditions. The point pair is a one-dimensional illustration.
+:::
+
 ## Linear, shift-invariant imaging
 
 For a **linear** system, weighted input signals produce the same weighted combination of output signals.
@@ -41,7 +51,11 @@ Convolution is review. Explain the normalization through a uniform input: its in
 
 ## Object and image in the frequency domain
 
-Use $f(x,y)$ for the object, $h(x,y)$ for the impulse response, and $g(x,y)$ for the output image.
+Use:
+
+- $f(x,y)$ for the object,
+- $h(x,y)$ for the impulse response,
+- and $g(x,y)$ for the output image.
 
 $$g=f*h
 \quad\Longleftrightarrow\quad
@@ -61,7 +75,7 @@ This notation is equivalent to I_blur=I_0*h on the preceding slide. Uppercase F,
 
 ![](figures/03_two_points.pdf){width=93%}
 
-A wider PSF makes the two responses overlap more strongly.
+A wider PSF makes the two objects overlap and hard to distinguish.
 
 ::: notes
 Original simulation of equal point inputs at x=-0.3 and +0.3 mm, using Gaussian line-spread responses sigma=0.08 and 0.25 mm. Both responses use the same vertical scale and integrated signal. Do not announce a universal criterion for resolving two points. Resolution depends on the task, contrast, and measurement conditions. The point pair is a one-dimensional illustration.
@@ -80,25 +94,7 @@ $$\mathrm{FWHM}=2\sqrt{2\ln2}\,\sigma\approx2.355\sigma.$$
 **Example:** $\sigma=0.10$ mm gives FWHM $\approx0.236$ mm.
 
 ::: notes
-A Gaussian is the model, not an exact universal camera PSF. At sigma=0 the notebook uses the delta-function limit analytically. The FWHM is measured along a line through the Gaussian center, not an area or radius. Have students check that the equation has units of length.
-:::
-
-## Separable Gaussian responses
-
-If $h(x,y)=h_x(x)h_y(y)$, its transform factors:
-
-$$H(u,v)=H_x(u)H_y(v).$$
-
-For $a,b>0$,
-
-$$h(x,y)=A e^{-\pi[(x/a)^2+(y/b)^2]}
-\quad\Longrightarrow\quad
-H(u,v)=Aab\,e^{-\pi[(au)^2+(bv)^2]}.$$
-
-**Method:** transform each one-dimensional Gaussian, include its scale factor, and multiply. Check $H(0,0)$ against the integral of $h$.
-
-::: notes
-Use normalized coordinates, or let a,b carry the same length units as x,y and let u,v have reciprocal length units. This is a general family, not a worked copy of the assessment response. The scaling rule is f(x/a) transforms to a F(au) for a>0. For an intensity-preserving PSF choose A=1/(ab), giving H(0,0)=1. A unit-peak h with A=1 instead has DC gain ab. This distinction prepares students to normalize MTF without assuming that every given h already has unit area.
+A Gaussian is the model, not an exact universal camera PSF. At sigma=0 the notebook uses the delta-function limit analytically. The FWHM is measured along a line through the Gaussian center, not an area or radius. Check that the equation has units of length.
 :::
 
 ## Resolution can differ by direction
@@ -131,7 +127,7 @@ The **MTF** describes how much sinusoidal contrast the system preserves at each 
 
 $$\mathrm{MTF}(f)=\frac{C_{\rm out}(f)}{C_{\rm in}(f)}.$$
 
-For our normalized LSI blur model, it is the magnitude of the Fourier transform of the PSF.
+For a normalized LSI blur model, it is the magnitude of the Fourier transform of the PSF.
 
 An MTF of 0.5 at a particular frequency means the output sinusoid has half the input contrast at that frequency.
 
@@ -165,7 +161,7 @@ Original exact Gaussian profiles and transfer curves at sigma=.04 and .25 mm. Th
 
 ## Finite pixel size
 
-A pixel reports an average over its collecting area, followed by one value at its center.
+A pixel reports an average over its collecting area.
 
 For vertical stripes and pixels of width and spacing $p$,
 
@@ -230,47 +226,16 @@ This is the quantitative reading of the earlier averaging plot. The mean intensi
 Original exact optical, pixel, and combined curves at sigma=.04 mm and p=.10 mm. The shaded region is above Nyquist, not a frequency range in which the presampling response disappears. MTF50 is a bandwidth descriptor, not a hard cutoff or universal smallest resolvable feature. Point at f=1 cycle/mm and ask for an estimated contrast-transfer fraction.
 :::
 
-## Guided notebook investigation
+## Noise and Signal-to-Noise Ratio (SNR)
 
-Open **01_sampling_resolution.ipynb** and run all cells.
+When imaging photons or particles the incoming signals follows a Poisson distribution. For $N$ average signal photons:
 
-1. Select **Fine sampling**. Identify the object, optical image, and detector image.
-2. Predict what will change when the PSF gets wider.
-3. Select **Blur limited**. Keep frequency and pixel spacing fixed.
-4. Compare the images, intensity profile, and MTF curve.
+- The standard deviation (noise) is $\sigma = \sqrt{N}$
+- The mean (average) is $\mu = N$
+- The SNR is signal/noise = $\frac{\mu}{\sigma}$. 
+    - For Poisson noise $SNR = \frac{N}{\sqrt{N}} = \sqrt{N}$.  
 
-Explain the observed change to a partner before recording your answer.
-
-::: notes
-Start the notebook block by minute 40. Allow five minutes for opening and identifying the panels, followed by eight minutes for predictions and comparison. Both presets have f=1 cycle/mm and p=.10 mm, so only sigma changes from .04 to .25 mm. Keep phase at its default zero. Do not require the aliasing or optional phase investigation today.
-:::
-
-## Measurements for the comparison
-
-| Quantity | Fine sampling | Blur limited |
-|:---|:---|:---|
-| PSF width $\sigma$ (mm) | 0.04 | 0.25 |
-| FWHM $\approx2.355\sigma$ (mm) | Calculate | Calculate |
-| MTF at 1 cycle/mm | Read | Read |
-| MTF50 (cycles/mm) | Read | Read |
-
-Why does stripe contrast decrease even though there are still ten pixels per stripe period?
-
-::: notes
-Use the next seven minutes to calculate, compare, and debrief. Approximate FWHMs are .0942 and .5887 mm. Combined MTF at f=1 is .9531 and .2864, with predicted contrasts .8577 and .2578 respectively. Exact values are checked by the figure-generation script. The model's MTF50 values should be read from the notebook, not inferred from FWHM. Students may complete notebook question 1 after class if needed.
-:::
-
-## Exit questions
-
-1. What does the PSF describe, and what does the MTF describe?
-2. If $C_{\rm in}=0.8$ and MTF $=0.5$, what is $C_{\rm out}$?
-3. What can limit spatial detail even when the pixel spacing is small?
-
-Next meeting: image quality, detector sampling, and aliasing in the notebook.
-
-::: notes
-Five-minute close. Expected responses: PSF is point response, MTF is sinusoidal contrast transfer versus frequency; output contrast .4, unitless; physical blur can attenuate fine detail before detector sampling. Finish with a student explanation rather than an additional derivation.
-:::
+This is why more light makes for a better image! 
 
 ## Reading and resources
 
@@ -282,4 +247,26 @@ Prince and Links, *Medical Imaging: Signals and Systems*: LSI imaging, point-spr
 
 ::: notes
 Reference slide, outside the timed class plan. All simulations and numerical examples are original and use the same Gaussian blur and full-width pixel integration model as the notebook. No external lecture figures have been copied. Details of negative sinc lobes and exact-Nyquist phase dependence remain optional.
+:::
+
+## Backup 
+
+**BACKUP**
+
+## Separable Gaussian responses
+
+If $h(x,y)=h_x(x)h_y(y)$, its transform factors:
+
+$$H(u,v)=H_x(u)H_y(v).$$
+
+For $a,b>0$,
+
+$$h(x,y)=A e^{-\pi[(x/a)^2+(y/b)^2]}
+\quad\Longrightarrow\quad
+H(u,v)=Aab\,e^{-\pi[(au)^2+(bv)^2]}.$$
+
+**Method:** transform each one-dimensional Gaussian, include its scale factor, and multiply. Check $H(0,0)$ against the integral of $h$.
+
+::: notes
+Use normalized coordinates, or let a,b carry the same length units as x,y and let u,v have reciprocal length units. This is a general family, not a worked copy of the assessment response. The scaling rule is f(x/a) transforms to a F(au) for a>0. For an intensity-preserving PSF choose A=1/(ab), giving H(0,0)=1. A unit-peak h with A=1 instead has DC gain ab. This distinction prepares students to normalize MTF without assuming that every given h already has unit area.
 :::

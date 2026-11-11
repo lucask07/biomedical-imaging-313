@@ -1,25 +1,25 @@
 ---
-title: "Signal theory for images"
+title: "Image signal theory"
 date: ""
 ---
 
 ## Spatial signals
 
-An image can be represented by a function $I(x,y)$.
+An image can be represented by a function $I(x,y)$, where $I$ is intensity.
 
-A line through the image gives a one-dimensional intensity profile, $I(x,y_0)$.
+A line through the image gives a one-dimensional intensity profile, $I(x,y_0)$. (line cut)
 
-We can apply the same sinusoidal and Fourier descriptions used for time signals, with position replacing time.
+We apply the same sinusoidal and Fourier descriptions used for time signals, with position replacing time.
 
 ::: notes
 Five-minute opening: ask for the horizontal-axis units of a temporal signal and an image profile. Prerequisite review, not a new general signals-and-systems course. Source for review structure: MIT RES.6-007, Fourier analysis and sampling lectures.
 :::
 
-## A sinusoidal resolution target
+## Sinusoidal resolution target
 
 ![](figures/02_gratings.pdf){width=93%}
 
-One bright-dark pair is one cycle. Increasing spatial frequency brings the stripes closer together.
+One bright-dark pair is a cycle. Increasing *spatial* frequency brings the stripes closer together.
 
 ::: notes
 All panels have the same FOV, contrast, phase, and intensity scale. The object is a controlled test pattern rather than anatomy. Frequencies are 0.5, 1, and 2 cycles/mm. Ask students to count cycles before reading the labels.
@@ -27,28 +27,29 @@ All panels have the same FOV, contrast, phase, and intensity scale. The object i
 
 ## Mean, amplitude, and phase
 
-$$I(x)=\overline I+A\cos(2\pi f x+\phi).$$
+Sinusoidal image:
+$$I(x)=\overline I+A\cos(2\pi u x+\phi).$$
 
-| Symbol | Meaning | Units in this exercise |
+| Symbol | Meaning | Units |
 |:---|:---|:---|
 | $\overline I$ | Mean intensity | Normalized intensity |
 | $A$ | Sinusoidal amplitude | Normalized intensity |
-| $f$ | Spatial frequency | Cycles/mm |
-| $\phi$ | Phase | Radians in the equation |
+| $u$ | Spatial frequency | Cycles/mm |
+| $\phi$ | Phase | Radians |
 
-The notebook uses $\overline I=0.5$ and $A=0.5C_0$.
+The notebook uses $\overline I=0.5$ and $A=0.5C_0$, where the contrast depends on $A / \overline I$. 
 
 ::: notes
 Normalized intensity is dimensionless. Phase controls translation rather than stripe spacing. The notebook displays phase in degrees, converting to radians internally. Require dimensional consistency: fx must be dimensionless.
 :::
 
-## Stripe period
+## Spatial period
 
 The period is the distance needed for one complete cycle:
 
-$$T_x=\frac{1}{f}.$$
+$$\Lambda_x=\frac{1}{u}.$$
 
-For $f=2$ cycles/mm, $T_x=0.50$ mm.
+For $u=2$ cycles/mm, $\Lambda_x=0.50$ mm.
 
 **Check:** a pattern has three bright-dark pairs across 2 mm. What are its spatial frequency and period?
 
@@ -58,8 +59,7 @@ Answer: f=1.5 cycles/mm and period=2/3 mm, approximately 0.667 mm. Emphasize tha
 
 ## Spatial period and frequency conventions
 
-The spatial period $T_x$ can also be written as $\Lambda_x$, uppercase lambda.
-
+Relations between wave number ($k$) and frequency $u$. 
 $$I(x)=\overline I+A\cos(2\pi u_0x+\phi)
       =\overline I+A\cos(k_{x0}x+\phi).$$
 
@@ -72,7 +72,7 @@ $x$ is a position; $\Lambda_x$ is a repeating distance. The notebook's frequency
 The period relations on this slide assume a positive frequency along x. For signed frequencies use Lambda_x=1/abs(u_0); zero frequency has no finite spatial period. The subscript zero identifies a particular sinusoidal component. Distinguish lowercase lambda for an electromagnetic wavelength from uppercase Lambda for a spatial intensity period. Do not equate spatial frequency to 1/x. Students should be able to convert between cycles/mm and radians/mm without changing the physical pattern.
 :::
 
-## Phase shifts the pattern
+## Phase: $\phi$
 
 ![](figures/02_phase.pdf){width=93%}
 
@@ -96,9 +96,9 @@ Original periodic example I(x)=0.5+0.25 cos(2 pi x)+0.10 cos(2 pi 3x). The right
 
 For a one-dimensional profile, we use
 
-$$\widetilde I(f)=\int_{-\infty}^{\infty} I(x)e^{-j2\pi f x}\,dx.$$
+$$\widetilde I(u)=\int_{-\infty}^{\infty} I(x)e^{-j2\pi u x}\,dx.$$
 
-- $x$ is position in mm and $f$ is spatial frequency in cycles/mm.
+- $x$ is position in mm and $u$ is spatial frequency in cycles/mm.
 - Magnitude describes the strength of each frequency component.
 - Phase describes its spatial alignment.
 
@@ -128,7 +128,8 @@ Both integrals extend over the whole spatial plane. The transform convention mov
 
 ## Magnitude and phase of a complex spectrum
 
-Write $F(u,v)=F_R(u,v)+jF_I(u,v)$, where $j^2=-1$.
+Write the Fourier transform as a real (R) and imaginary (I) component. 
+$F(u,v)=F_R(u,v)+jF_I(u,v)$, where $j^2=-1$.
 
 $$|F|=\sqrt{F_R^2+F_I^2},\qquad
 \angle F=\operatorname{atan2}(F_I,F_R).$$
@@ -143,7 +144,7 @@ On an Argand diagram the example lies in quadrant II. Using arctan(F_I/F_R) alon
 
 ## A rectangular spatial signal and its transform
 
-A unit-height rectangle $r(x)=\operatorname{rect}(x/a)$ equals 1 for $|x|<a/2$ and 0 outside. Its width is $a>0$.
+A unit-height rectangle $r(x)=\operatorname{rect}(x/a)$ equals 1 for $|x|<a/2$ and 0 outside. Its width is $a>0$. A pixel's sensitivity across its width is often modeled as a rect function. 
 
 $$R(u)=a\,\operatorname{sinc}(au),\qquad
 \operatorname{sinc}(z)=\frac{\sin(\pi z)}{\pi z},\quad\operatorname{sinc}(0)=1.$$
@@ -163,7 +164,7 @@ $$q(x)=\frac{1}{\sqrt{2\pi}\sigma}\,e^{-x^2/(2\sigma^2)},
 
 ![](figures/02_gaussian_transform.pdf){width=80%}
 
-A wider spatial Gaussian has a narrower frequency response.
+A wider spatial Gaussian has a narrower frequency response. The Gaussian is a common approximation for a camera's point-spread-function (PSF). A greater $\sigma$ implies more blur. 
 
 ::: notes
 Here sigma has units mm, q has units mm^-1, and Q is dimensionless. This choice of unit area keeps Q(0)=1 for both plotted widths. If students instead choose a unit-peak Gaussian, the transform gains the factor sqrt(2 pi)*sigma; either is valid when stated consistently. The transform is real and nonnegative because this example is centered and even. The useful base pair exp(-pi x^2) transforms to exp(-pi u^2); scaling changes widths reciprocally. The two-dimensional Gaussian example in the system-response lecture uses separability.
@@ -183,13 +184,13 @@ Original periodic simulations and discrete Fourier transforms. Top row is I(x,y)
 
 For ideal point samples with spacing $p$,
 
-$$I_n=I(np),\qquad f_s=\frac{1}{p}.$$
+$$I_n=I(np),\qquad u_s=\frac{1}{p}.$$ $n$ is an integer sample index (i.e., pixel number). $p$ is the pixel pitch - the center-to-center spacing between neighboring pixels. 
 
-The sampling frequency $f_s$ is the number of samples per mm.
+The sampling frequency $u_s$ is the number of samples per mm.
 
 For a sinusoid, the number of samples per period is
 
-$$N_{\rm period}=\frac{1}{pf}.$$
+$$N_{\rm period}=\frac{\Lambda_x}{p}=\frac{1}{pu}.$$
 
 ::: notes
 These are ideal point samples. A physical pixel averages over a finite area before sampling; the system-response lecture adds that effect. The origin here is np. The notebook places pixel centers at (n+1/2)p. The sampling rate and Nyquist frequency are unaffected by that origin choice.
@@ -201,7 +202,7 @@ $$f_N=\frac{f_s}{2}=\frac{1}{2p}.$$
 
 For an ideal band-limited signal, recovery from equally spaced samples requires its highest frequency to be strictly below $f_N$.
 
-A sinusoid below this limit has more than two samples per period.
+A sinusoid with a frequency below this limit is sampled more than two times per period.
 
 **Example:** $p=0.25$ mm gives $f_s=4$ samples/mm and $f_N=2$ cycles/mm.
 
@@ -228,7 +229,7 @@ Use a conversion-first strategy or the angular-frequency formula and check that 
 
 ![](figures/02_alias.pdf){width=93%}
 
-At these sample locations, the two continuous signals give identical values.
+At these sample locations, the two continuous signals give identical values. This is aliasing. 
 
 ::: notes
 Original exact point-sampling example. p=0.25 mm and x_n=np. A 3 cycles/mm cosine aliases to 1 cycle/mm because cos(2 pi 3n/4)=cos(2 pi n/4). The samples cannot identify the original high-frequency sinusoid without prior information. This plot intentionally omits pixel-area averaging.
@@ -245,7 +246,7 @@ A detector records a 1.5 cycles/mm stripe pattern.
 | Samples per stripe period | ? | ? |
 | Target below Nyquist? | ? | ? |
 
-Calculate the entries with a partner. Predict whether either detector can show a false stripe spacing.
+Calculate the entries and predict whether either detector demonstrates incorrect stripe spacing due to aliasing.
 
 ::: notes
 Allow eight minutes and four minutes of debrief. Answers: fs=5 and 2.5 samples/mm; fN=2.5 and 1.25 cycles/mm; samples per period=3.333 and 1.667. The second case aliases to 1 cycle/mm. Refer to the first as adequately sampled for this single sinusoid, not a guarantee about all possible objects.
@@ -255,17 +256,17 @@ Allow eight minutes and four minutes of debrief. Answers: fs=5 and 2.5 samples/m
 
 An object can contain frequencies above a detector's Nyquist frequency.
 
-Physical blur reduces high-frequency contrast before sampling. This can weaken aliases, while also reducing useful fine detail.
+Physical blur reduces high-frequency contrast before sampling. This can limit aliasing, but also reduces fine detail.
 
 Increasing the displayed image size adds no new detector measurements.
 
-Next meeting: the point-spread function and modulation transfer function quantify these effects.
+Next class: the point-spread function (PSF) and modulation transfer function (MTF) quantify these effects.
 
 ::: notes
 Use this as the bridge to system response, not as a derivation of MTF. A Gaussian does not strictly band-limit a signal. Later students will compare a blur curve with the detector Nyquist frequency.
 :::
 
-## Exit questions
+## Discussion questions
 
 1. What changes when spatial frequency doubles: stripe period, amplitude, or both?
 2. What is the Nyquist frequency for $p=0.10$ mm?
