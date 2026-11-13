@@ -5,6 +5,8 @@ date: ""
 
 ## When does a projection answer the question?
 
+A projection is in single view of x-ray absorption.
+
 - **Chest radiography:** one projection can show the overall lung pattern and the position of tubes and lines.
 - **Mammography:** a projection can show fine calcifications when there is enough contrast and resolution.
 - **Fluoroscopy:** repeated projections show motion during a procedure.
@@ -15,7 +17,7 @@ When the question is **where within the body** a feature lies, overlapping struc
 0–12 min for applications, CT hardware, and detector rows. Ask what changes if the same two objects exchange depths without changing their ray paths.
 :::
 
-## A projection and a slice answer different questions
+## A projection versus a slice
 
 :::: {.columns}
 ::: {.column width="45%"}
@@ -71,7 +73,7 @@ The **gantry** supports the X-ray tube and detector array. In this scanner they 
 This is an annotated photograph of a scanner with its housing removed. Real CT geometries use divergent rays. The rest of this lecture uses parallel rays to isolate the reconstruction idea.
 :::
 
-## One detector row can sample a slice
+## One detector row samples a slice
 
 ![](figures/06_detector_geometry.pdf){width=99%}
 
@@ -79,7 +81,9 @@ This is an annotated photograph of a scanner with its housing removed. Real CT g
 Allow about 3 minutes. In this ideal model the rays lie in the slice plane, which is perpendicular to the rotation axis. Each view uses the whole detector row. A single row can acquire successive slices if the table moves between scans. Multiple rows extend coverage along the rotation axis. Clinical multirow systems use diverging rays. The right panel illustrates coverage with parallel rays.
 :::
 
-## Each ray gives a sum of attenuation along its path
+## Each ray measures a sum of attenuation along its path
+
+A **ray** is a unique direction of x-ray travel. 
 
 Recall the two-layer result:
 
@@ -95,7 +99,7 @@ This is a **line integral**: add the local attenuation coefficient times a short
 12–25 min for projections, coordinates, and the sinogram. This assumes a single photon energy and primary transmission. Real systems account for scatter and energy-dependent effects. p denotes projection value in this deck. Use units: mu is inverse length, dℓ is distance along the ray, p is dimensionless.
 :::
 
-## Where is a ray on the detector?
+## Ray position on the detector
 
 - $s$ is the signed position along the detector row, in mm. The central ray has $s=0$.
 - $\theta$ is the angle of the detector coordinate measured from the $x$ axis. The rays run perpendicular to that coordinate.
@@ -107,23 +111,23 @@ At $0^\circ$, $s=x$ and the rays run parallel to $y$. At $90^\circ$, $s=y$ and t
 Use the notebook's yellow rays to locate the insert centers. Those rays are examples. The profile uses the entire row. The object is a fixed 2D slice with a background disk and two higher-attenuation inserts. Tilting the plane through a 3D object would select a different slice.
 :::
 
-## One view gives a profile across the detector
+## One view (rotation) produces a profile across the detector
 
 ![](figures/06_views.pdf){width=92%}
 
-Each point is a line integral for a different ray through the same slice. One complete detector row gives one profile.
+Each point is a line integral of the linear absorption coefficient for a different ray through the same slice. One complete detector row gives one profile.
 
 ::: notes
 Synthetic two-insert phantom. Left and right use perpendicular views. In one view the insert positions overlap along a ray. The other view separates them. The gray region represents a uniform background material.
 :::
 
-## A sinogram stacks the profiles by angle
+## Sinogram
 
 ![](figures/06_sinogram.pdf){width=77%}
 
 Each column is one detector profile $p(s,\theta)$. Its values are dimensionless.
 
-**Discuss.** How does an insert’s detector position change as the view rotates?
+Follow the inserts. How does the position on the detector change as the view rotates?
 
 ::: notes
 Finish the projection discussion here. Each column is one view. Follow the feature at zero, 45 and 90 degrees and connect to its projected position. An off-center point traces a sinusoidal path in this parallel-beam model. Colors represent dimensionless line integrals.
@@ -131,17 +135,15 @@ Finish the projection discussion here. Each column is one view. Follow the featu
 
 ## Backprojection spreads each value along its ray
 
-For each detector measurement, add its value back along the ray that produced it.
+For each detector measurement, add its value back along the ray that produced it. That's the best we can do! 
 
 A single view gives stripes of possible locations. As views accumulate, rays from the same structure cross near that structure.
-
-**Predict:** What happens to the contributions that extend beyond the object?
 
 ::: notes
 25–42 min for backprojection and the ramp-filter walkthrough. Contributions from other rays accumulate into a broad haze. This is a visual introduction rather than a derivation.
 :::
 
-## More views concentrate the signal
+## More views better localize the signal
 
 ![](figures/06_backprojection.pdf){width=92%}
 
@@ -151,7 +153,7 @@ The inserts become easier to locate as views accumulate. Their edges still look 
 Three progressive snapshots using nested, uniformly spaced angle sets. Intensity is scaled for comparison to the same reference background region in the phantom. Point to radial contributions that persist around the inserts.
 :::
 
-## Filtering sharpens the reconstructed features
+## High-pass filtering sharpens the reconstruction
 
 ![](figures/06_reconstruction.pdf){width=92%}
 
@@ -178,7 +180,7 @@ The ramp $|u|$ gives higher spatial frequencies more weight. Apply it to each si
 Use the notebook's 90-degree example. The ramp plot shows nonnegative frequencies. Negative values in the filtered profile help cancel the broad blur from ordinary backprojection. High-frequency noise can also be amplified. See Kak and Slaney, chapter 3.
 :::
 
-## What does one view add to the slice?
+## One view's contribution to the slice
 
 For each pixel $(x,y)$, sum the filtered values along the rays through it.
 
@@ -218,8 +220,6 @@ What is the difference between a detector reading in one view and a pixel in a r
 ## Reading and image sources
 
 [IAEA, *Diagnostic Radiology Physics*](https://www-pub.iaea.org/MTCD/Publications/PDF/Pub1564webNew-74666420.pdf), chapters 6 and 11.
-
-[Kak and Slaney, *Principles of Computerized Tomographic Imaging*, chapter 3](https://engineering.purdue.edu/~malcolm/pct/pct-toc.html).
 
 The projection and reconstruction examples use a synthetic two-insert object and an ideal parallel-beam model.
 
