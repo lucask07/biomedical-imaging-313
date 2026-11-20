@@ -67,27 +67,29 @@ A coincidence timing resolution of $400$ ps FWHM (full width at half maximum) co
 22–34 min. c = 0.300 mm/ps. Derive the factor of two by moving the event toward B by s. FWHM means full width at half maximum. Differentiate a measured time difference for one pair, coincidence timing resolution, and the coincidence acceptance window. TOF localization width along one LOR differs from reconstructed image resolution.
 :::
 
-## Which events enter the image?
+## Which events are counted? 
 
 - **True:** both photons came from the same annihilation and reached the detectors without scattering.
 - **Scatter:** a photon changed direction on the way to a detector, shifting the assigned line.
 - **Random:** two unrelated hits fall within the coincidence window.
 
-**Discuss.** What could happen to true and random coincidences if the acceptance window is made wider?
+What could happen to the rate of true and random coincidences if the acceptance window is made wider?
 
 ::: notes
 34–41 min. A wider window can recover true events near the cutoff but admits more random pairs. In PET/CT, a CT-derived attenuation map can help correct for photon loss. Real PET estimates random and scattered event contributions. Explain the coincidence requirement that both photons survive.
 :::
 
-## Notebook activity: compare lines and timing
+## Radon transform
 
-Open the **PET coincidence explorer** and use **Run all**.
+[Radon transform](https://www.mathworks.com/help/images/radon-transform.html)
+
+## iPython Notebook
+
+Open the **PET explorer** and use **Run all**.
 
 1. Use a small event count. Find the lines from the two tracer deposits.
 2. Increase the event count. Compare the spatial patterns in both panels.
 3. Hold the event count fixed and improve timing resolution. Explain what happens to the along-line width and the image.
-
-**Report.** Describe one change the event count caused and one change the timing resolution caused.
 
 ::: notes
 41–60 min. Give pairs 15 minutes, then compare observations. Both panels use the same events. These are simple event backprojections for interpretation. Quantitative PET commonly uses iterative reconstruction with a model of acquisition and corrections.
