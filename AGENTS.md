@@ -31,6 +31,8 @@ Develop and maintain materials for the Fall 2026 Medical Imaging course.
 
 - Create a consistent format that generates slide source for each day in markdown. 
 - Slides should be compiled to a PDF. 
+- For lecture slides don't create clever titles. Instead prefer simplicity. Instead of "The tracer is the source" pick "Tracers".
+- For discussion questions in the slides just pose the question, don't prefix it with **Discuss** or similar. 
 
 ## Exercises 
 

@@ -10,6 +10,9 @@ These draft decks assume 65-minute classes. Each has an editable Markdown source
 | X-ray physics | [Markdown](04_xray_physics.md) | [PDF](04_xray_physics.pdf) |
 | X-ray detection | [Markdown](05_xray_detection.md) | [PDF](05_xray_detection.pdf) |
 | X-ray applications and CT | [Markdown](06_xray_applications_and_ct.md) | [PDF](06_xray_applications_and_ct.pdf) |
+| Physics of nuclear medicine | [Markdown](07_nuclear_medicine_physics.md) | [PDF](07_nuclear_medicine_physics.pdf) |
+| Planar scintigraphy | [Markdown](08_planar_scintigraphy.md) | [PDF](08_planar_scintigraphy.pdf) |
+| Emission computed tomography | [Markdown](09_emission_computed_tomography.md) | [PDF](09_emission_computed_tomography.pdf) |
 
 [Instructor guide](instructor_guide.md) contains timing, discussion responses, and teaching-resource suggestions. Instructor notes also appear in the Markdown inside `::: notes` blocks; the student PDFs omit them. References appear at the end of each deck. Exact textbook sections can be assigned once the edition is specified.
 
